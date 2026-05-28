@@ -1,0 +1,11 @@
+{
+  "name": "market-overview",
+  "version": "1.0.0",
+  "scripts": {
+    "install:all": "cd backend && npm install && cd ../frontend && npm install",
+    "dev": "start cmd /k \"cd backend && npm run dev\" && cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev"
+  },
+  "private": true
+}

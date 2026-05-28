@@ -1,0 +1,30 @@
+module.exports = {
+  apps: [
+    {
+      name: 'market-backend',
+      script: 'server.js',
+      cwd: 'C:\\Market\\backend',
+      env: { NODE_ENV: 'production', PORT: 3001 },
+      watch: false,
+      autorestart: true,
+      restart_delay: 3000,
+      max_restarts: 10,
+      log_date_format: 'YYYY-MM-DD HH:mm:ss',
+      out_file: 'C:\\Market\\logs\\backend-out.log',
+      error_file: 'C:\\Market\\logs\\backend-err.log',
+    },
+    {
+      name: 'market-frontend',
+      script: 'node',
+      args: 'serve-dist.cjs',
+      cwd: 'C:\\Market\\frontend',
+      watch: false,
+      autorestart: true,
+      restart_delay: 3000,
+      max_restarts: 10,
+      log_date_format: 'YYYY-MM-DD HH:mm:ss',
+      out_file: 'C:\\Market\\logs\\frontend-out.log',
+      error_file: 'C:\\Market\\logs\\frontend-err.log',
+    },
+  ],
+};
