@@ -3,7 +3,8 @@ const router  = express.Router();
 const NodeCache = require('node-cache');
 const fs      = require('fs');
 const path    = require('path');
-const { getQuote, getQuotes, getHistorical, getKoreanNews, getKoreanNewsEn, getKoreanEarningsCalendar } = require('../services/yahoo');
+const { getQuote, getQuotes, getKoreanNews, getKoreanNewsEn, getKoreanEarningsCalendar } = require('../services/yahoo');
+const { getNaverOHLCV } = require('../services/naverOhlcv');
 const { getCalendar } = require('../services/econCalendar');
 const { calculateRSI, calculate60DayRange, getRSIZone } = require('../services/calculations');
 const { getKRStockUniverse } = require('../services/krStockList');
@@ -140,7 +141,7 @@ router.get('/sectors', async (req, res) => {
 // ─── 공통 종목 스크리닝 함수 ─────────────────────────────────────────────────
 async function screenKRStock(symbol, nameHint, { rsiMin, rsiMax, rangeMin }) {
   try {
-    const candles = await getHistorical(symbol, 90);
+    const candles = await getNaverOHLCV(symbol, 90);
     if (candles.length < 20) return null;
 
     const closes  = candles.map(c => c.close);
