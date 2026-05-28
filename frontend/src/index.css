@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-surface text-gray-100 font-sans;
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-surface min-h-screen;
+  }
+
+  * {
+    @apply border-surface-border;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-surface;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-surface-border rounded;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500;
+  }
+}
+
+@layer components {
+  /* ─── 카드 ─────────────────────────────────────────────────── */
+  .card {
+    @apply bg-surface-card border border-surface-border rounded-lg overflow-hidden;
+  }
+
+  .card-header {
+    @apply px-4 py-3 border-b border-surface-border flex items-center justify-between;
+    background: linear-gradient(to bottom, #1c2128, #161b22);
+  }
+
+  /* 카드 타이틀: 가독성 개선 */
+  .card-title {
+    @apply text-xs font-bold uppercase tracking-widest text-gray-300;
+    letter-spacing: 0.1em;
+  }
+
+  /* 섹션 구분 레이블 */
+  .section-label {
+    @apply flex items-center gap-2 text-xs font-semibold text-gray-500 uppercase tracking-widest;
+  }
+
+  .section-label::after {
+    content: '';
+    @apply flex-1 h-px bg-surface-border;
+  }
+
+  /* ─── 변화 표시 ─────────────────────────────────────────────── */
+  .up   { @apply text-brand-green; }
+  .down { @apply text-brand-red; }
+  .neutral { @apply text-gray-400; }
+
+  /* ─── 배지 ─────────────────────────────────────────────────── */
+  .badge {
+    @apply inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium;
+  }
+  .badge-green  { @apply badge bg-brand-green/15 text-brand-green border border-brand-green/20; }
+  .badge-red    { @apply badge bg-brand-red/15 text-brand-red border border-brand-red/20; }
+  .badge-yellow { @apply badge bg-brand-yellow/15 text-brand-yellow border border-brand-yellow/20; }
+  .badge-blue   { @apply badge bg-brand-blue/15 text-brand-blue border border-brand-blue/20; }
+  .badge-neutral { @apply badge bg-gray-700/80 text-gray-300 border border-gray-600/30; }
+
+  /* ─── 테이블 행 ─────────────────────────────────────────────── */
+  .data-row {
+    @apply border-b border-surface-border transition-colors cursor-default;
+  }
+  .data-row:hover {
+    @apply bg-surface-raised/60;
+  }
+  .data-row:last-child {
+    @apply border-b-0;
+  }
+
+  /* ─── 인터랙티브 버튼 ────────────────────────────────────────── */
+  .btn-primary {
+    @apply flex items-center gap-1.5 px-3 py-1.5 text-xs bg-brand-blue/15 hover:bg-brand-blue/25
+           text-brand-blue rounded border border-brand-blue/25 transition-all
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply flex items-center gap-1.5 px-3 py-1.5 text-xs text-gray-500
+           hover:text-gray-200 hover:bg-surface-raised rounded transition-all;
+  }
+
+  /* ─── RSI 바 ─────────────────────────────────────────────────── */
+  .rsi-bar { @apply h-1.5 rounded-full bg-gray-700/60; }
+
+  /* ─── 빈 상태 ─────────────────────────────────────────────────── */
+  .empty-state {
+    @apply flex flex-col items-center justify-center py-12 gap-3 text-center;
+  }
+  .empty-state-icon {
+    @apply w-10 h-10 rounded-full bg-surface-raised flex items-center justify-center text-gray-600;
+  }
+  .empty-state-title {
+    @apply text-sm font-medium text-gray-400;
+  }
+  .empty-state-desc {
+    @apply text-xs text-gray-600 max-w-xs;
+  }
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .text-price {
+    @apply font-mono text-sm;
+  }
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  /* 텍스트에 미묘한 shimmer */
+  .text-shimmer {
+    background: linear-gradient(90deg, #8b949e 0%, #c9d1d9 50%, #8b949e 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 2s linear infinite;
+  }
+  @keyframes shimmer {
+    to { background-position: 200% center; }
+  }
+}
+
+/* ─── AI 브리핑 마크다운 ──────────────────────────────────────────── */
+.ai-content h2 {
+  @apply text-xs font-bold text-brand-blue mt-5 mb-2 uppercase tracking-widest;
+  border-bottom: 1px solid rgba(88,166,255,0.15);
+  padding-bottom: 4px;
+}
+.ai-content h3 {
+  @apply text-xs font-semibold text-gray-300 mt-3 mb-1.5;
+}
+.ai-content p {
+  @apply text-sm text-gray-300 leading-relaxed mb-2.5;
+}
+.ai-content ul {
+  @apply mb-3 space-y-1.5;
+  padding-left: 1rem;
+}
+.ai-content li {
+  @apply text-sm text-gray-300 leading-relaxed;
+  list-style-type: '›  ';
+}
+.ai-content strong {
+  @apply text-gray-100 font-semibold;
+}
+.ai-content em {
+  @apply text-brand-yellow not-italic;
+}
+
+/* ─── 스켈레톤 로딩 ──────────────────────────────────────────────── */
+.skeleton {
+  @apply bg-surface-raised rounded animate-pulse;
+}
+
+/* ─── 기업가치평가 PDF 인쇄 스타일 ──────────────────────────────── */
+@media print {
+  /* ① 페이지 설정 */
+  @page { size: A4; margin: 12mm 14mm; }
+
+  /* ② 앱 크롬(네비·사이드바) 숨기기 */
+  body > *:not(#root) { display: none !important; }
+
+  /* ③ 색상·배경 강제 출력 */
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+  /* ④ print:hidden 클래스 처리 */
+  .print\:hidden { display: none !important; }
+
+  /* ⑤ 다크 배경 유지 (컬러 PDF) */
+  body, #root { background: #0d1117 !important; }
+
+  /* ⑥ overflow-hidden → visible (카드 내용 잘림 방지) */
+  [class*="overflow-hidden"] { overflow: visible !important; }
+
+  /* ⑦ 12컬럼 그리드 → 단일 컬럼 (좌우 잘림 방지) */
+  .lg\:grid-cols-12,
+  .md\:grid-cols-2 { display: block !important; }
+
+  .lg\:col-span-4,
+  .lg\:col-span-8 { width: 100% !important; }
+
+  /* ⑧ 섹션 분리: 각 카드가 페이지 중간에 잘리지 않도록 */
+  .space-y-8 > *,
+  .space-y-6 > *,
+  table,
+  .recharts-wrapper { break-inside: avoid; page-break-inside: avoid; }
+
+  /* ⑨ 주요 섹션 앞에서 페이지 나누기 허용 */
+  .space-y-8 > * + * { break-before: auto; }
+
+  /* ⑩ 민감도 테이블 오버플로 */
+  .overflow-x-auto { overflow: visible !important; }
+}
